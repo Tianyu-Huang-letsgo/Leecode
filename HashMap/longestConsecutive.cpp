@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// 最长连续序列
 class Solution
 {
 public:
@@ -24,7 +25,7 @@ public:
         int longest_count = 0;
         for (auto it = s.begin(); it != s.end(); it++)
         {
-            if (!s.count(*it - 1)) // 核心，碰到最小值才开始计数
+            if (!s.count(*it - 1)) // 核心，碰到最小值才开始计数，能找到比它小1的数，它就不是最小值
             {
                 int cnt = 1;
                 int num = *it;
