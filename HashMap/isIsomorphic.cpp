@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 同构字符串
 class Solution
 {
 public:
