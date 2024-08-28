@@ -6,11 +6,14 @@
 class Solution
 {
 public:
+    // 三数之和：
+    // 难点1. 答案不能包含重复三元组（剪枝操作）
+    // 难点2. 三数时间复杂度不能太高（暴力遍历是n^3）
     std::vector<std::vector<int>> threeSum(std::vector<int> &nums)
     {
         std::vector<std::vector<int>> res;
 
-        // Step 1: Sort the array
+        // Step 1: Sort the array排序为排除重复数字提供了条件，且为三数之和筛选做出了条件（>0直接排除）
         std::sort(nums.begin(), nums.end());
 
         // Step 2: Iterate through the array
@@ -25,7 +28,7 @@ public:
             size_t i = k + 1, j = nums.size() - 1;
 
             // Step 3: Use two pointers to find the other two numbers
-            while (i < j)
+            while (i < j) // 确保i，j在边界内遍历
             {
                 // 在这里已经完成运算了
                 int s = nums[k] + nums[i] + nums[j];
@@ -33,8 +36,8 @@ public:
                 if (s < 0)
                 {
                     ++i;
-                    while (i < j && nums[i] == nums[i - 1])
-                        ++i; // Skip the same `nums[i]`
+                    while (i < j && nums[i] == nums[i - 1]) // 每一次循环内处理指针都需要确保无越界
+                        ++i;                                // Skip the same `nums[i]`
                 }
                 else if (s > 0)
                 {
