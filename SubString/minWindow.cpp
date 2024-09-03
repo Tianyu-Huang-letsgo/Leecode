@@ -31,7 +31,7 @@ public:
                     star = left; // 一旦这个值被刷新，才是有答案的
                     minlen = right - left + 1;
                 }
-                char out = s[left++];           // 即将弹出的元素
+                char out = s[left++];           // 即将弹出的元素,满足条件左边界就要向右靠，不断搜索最小窗口
                 if (hash2[out]-- == hash1[out]) // 一旦hash2类别数等于再减，计数-1
                     --count;
             }
