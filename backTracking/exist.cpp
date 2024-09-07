@@ -24,8 +24,10 @@ public:
     }
 
 private:
+    // k表示单词位数
     bool dfs(vector<vector<char>> &board, const string target, int i, int j, int k)
     {
+        // 核心点：board[i][j] != target[k]就return false， 只要有一个字母对不上，那就是错误路径，返回寻找更优路径，终极剪枝思想
         if (i < 0 || i >= board.size() || j < 0 || j >= board[0].size() || board[i][j] != target[k])
         {
             return false;

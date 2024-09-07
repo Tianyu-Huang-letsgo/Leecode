@@ -4,6 +4,7 @@
 
 using namespace std;
 
+// 全排列
 class Solution
 {
 public:
@@ -12,34 +13,33 @@ public:
     // 题目中-10 < num[i] < 10 需要做一个偏移
     vector<vector<int>> permute(vector<int> &nums)
     {
-        vector<bool> isSel(21, 0);
-        int cnt = 0;
+        vector<bool> isSelect(21, 0); // nums数组范围是-10 ~ 10
         vector<int> tmp;
-        dfs(nums, isSel, 0, tmp);
+        dfs(nums, 0, tmp, isSelect);
         return this->ret_;
     }
 
 private:
     vector<vector<int>> ret_;
-    void dfs(vector<int> &nums, vector<bool> &isSelected, int cnt, vector<int>& vec)
+    void dfs(const vector<int> &nums, int cnt, vector<int> &cur, vector<bool> &isSelect)
     {
-        // 找到正确答案处理
         if (cnt == nums.size())
         {
-            ret_.push_back(vec);
+            this->ret_.push_back(cur);
         }
-        for (auto num : nums)
+        for (int i = 0; i < nums.size(); i++) // 这里如果单纯是遍历元素，没利用到索引的话，使用auto num : nums效率会更高
         {
-            if (!isSelected[num + 10])
+            if (isSelect[nums[i] + 10]) // 剪枝重复选取
             {
-                vec.push_back(num);
-                cnt++;
-                isSelected[num + 10] = 1;
-                dfs(nums, isSelected, cnt, vec);
-                isSelected[num + 10] = 0;
-                cnt--;
-                vec.pop_back();
+                continue;
             }
+            isSelect[nums[i] + 10] = 1;
+            cur.push_back(nums[i]);
+            ++cnt;
+            dfs(nums, cnt, cur, isSelect);
+            --cnt;
+            cur.pop_back();
+            isSelect[nums[i] + 10] = 0;
         }
     }
 };

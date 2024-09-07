@@ -3,11 +3,13 @@
 
 using namespace std;
 
+// 寻找重复数
 class Solution
 {
 public:
     // 难点：根据题目要求，不能使用哈希表记录数字出现个数
-    // 官方解题思路：使用数字计数判断，cnt[i]表示<=i出现的个数，因为有n+1个数，故只要数字重复了，cnt[i]>i,cnt[i-1]<=i
+    // 前置条件：数字都在[1, n]范围内，数组有n+1个数
+    // 官方解题思路：使用**数字计数**判断，cnt[i]表示<=i出现的个数，因为有n+1个数，故只要数字重复了，cnt[i]>i,cnt[i-1]<=i
     int findDuplicate(vector<int> &nums)
     {
         int l = 1, r = nums.size() - 1;
@@ -18,7 +20,7 @@ public:
             int cnt = 0;
             for (int i = 0; i < nums.size(); i++)
             {
-                cnt += nums[i] <= mid;
+                cnt += nums[i] <= mid; // 跟nums的排序就没有关系的
             }
             if (cnt <= mid)
             {

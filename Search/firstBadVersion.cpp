@@ -12,6 +12,7 @@ bool isBadVersion(int version)
     return v[version - 1];
 }
 
+// 第一个错误的版本
 class Solution
 {
     // 思路：二分搜索
@@ -44,7 +45,7 @@ public:
         int left = 1, right = n;
         while (left < right) // 少判断一次
         {
-            int mid = ((right - left) >> 1) + left; // 以为操作比除数时间复杂度更低
+            int mid = ((right - left) >> 1) + left; // 移位操作比除数时间复杂度更低
             if (isBadVersion(mid))
             {
                 right = mid; // right就锁在bad的位置，等待left进行收敛

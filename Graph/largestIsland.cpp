@@ -16,7 +16,7 @@ public:
         return x >= 0 && x < n && y >= 0 && y < n;
     }
     // 总结：最大人工岛是最大岛屿面积的进化版
-    // 1. 需要引入vector<vector<int>> tag作为标记不同岛屿；
+    // 1. 需要引入vector<vector<int>> tag作为标记不同岛屿,为后续海洋找不同岛屿做准备；
     // 2. 需要使用unordered_map area对每一块岛屿的面积进行记录，t作为岛屿唯一标识，每一块陆地的i,j是唯一的，刚好可以映射为t；
     // 3. 需要做两次dfs，分别得到岛屿面积与遍历海洋邻接块。
     int dfs(const vector<vector<int>> &grid, int x, int y, vector<vector<int>> &tag, int t)
@@ -26,7 +26,7 @@ public:
         for (int i = 0; i < 4; i++)
         {
             int x1 = x + d[i], y1 = y + d[i + 1];
-            if (valid(n, x1, y1) && grid[x1][y1] == 1 && tag[x1][y1] == 0)
+            if (valid(n, x1, y1) && grid[x1][y1] == 1 && tag[x1][y1] == 0) // 位置没越界、是岛屿、没被标记过
             {
                 res += dfs(grid, x1, y1, tag, t);
             }
@@ -62,7 +62,7 @@ public:
                     for (int k = 0; k < 4; k++)
                     {
                         int x = i + d[k], y = j + d[k + 1];
-                        // 这个判断是关键！！1. x,y每越界； 2. 没有陆地； 3. 当前海洋快已经存过这块陆地了
+                        // 这个判断是关键！！1. x,y没越界； 2. 没标记（不是陆地）； 3. 当前海洋快已经遍历过这块陆地了
                         if (!valid(n, x, y) || tag[x][y] == 0 || connected.count(tag[x][y]) > 0)
                         {
                             continue;
