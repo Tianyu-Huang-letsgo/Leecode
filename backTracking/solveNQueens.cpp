@@ -6,6 +6,7 @@
 
 using namespace std;
 
+// N皇后
 class Solution
 {
 public:
