@@ -1,30 +1,60 @@
 #include <iostream>
 #include <stdio.h>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
+// 买卖股票的最佳时机
+// 千万不要将问题复杂化！
 class Solution
 {
 public:
-    // 难题，不能只用dp的思维方式进行思考，要从实际出发
-    // 贪心思路：所有的上涨交易日都买入，所有的下降交易日都卖出
+    // 先记录dp[1] = 第一天买入第二天卖出价格
+    // dp[i]:选择在第i天卖出的最大价格，选择在第i天卖出price[i-1] - min; 选择不在第i天卖出：dp[i-1]
+    // 是否需要记录数组状态？
     int maxProfit(vector<int> &prices)
     {
+        int p_min = prices[0];
         int ret = 0;
+        for (int i = 0; i < prices.size(); ++i)
+        {
+            ret = max(ret, prices[i] - p_min); // 后来的减先前记录的最小值，不断刷新就好
+            p_min = min(p_min, prices[i]);
+        }
+        return ret;
+    }
+};
+
+class Solution2
+{
+public:
+    // 先记录dp[1] = 第一天买入第二天卖出价格
+    // dp[i]:选择在第i天卖出的最大价格，选择在第i天卖出price[i-1] - min; 选择不在第i天卖出：dp[i-1]
+    // 是否需要记录数组状态？
+    int maxProfit(vector<int> &prices)
+    {
         int n = prices.size();
-        if (n == 1)
+        vector<int> dp(n);
+        if (n < 2)
         {
             return 0;
         }
-        for (int i = 1; i < n; ++i)
+        dp[0] = 0;
+        int min = prices[0];
+        for (int i = 1; i < n; i++)
         {
-            if (prices[i] > prices[i - 1])
+            min = std::min(prices[i - 1], min); // 持续刷新最小值
+            if (prices[i] > min)
             {
-                ret += prices[i] - prices[i - 1];
+                dp[i] = max(dp[i - 1], prices[i] - min);
+            }
+            else
+            {
+                dp[i] = dp[i - 1];
             }
         }
-        return ret;
+        return dp[n - 1];
     }
 };
 
