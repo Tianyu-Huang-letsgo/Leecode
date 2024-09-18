@@ -33,7 +33,7 @@ public:
 
         if (list1->val < list2->val)
         {
-            list1->next = mergeTwoLists(list1->next, list2);
+            list1->next = mergeTwoLists(list1->next, list2); // 核心：逐节点比较，谁更小先返回谁
             return list1;
         }
         else

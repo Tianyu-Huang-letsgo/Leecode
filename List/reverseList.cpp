@@ -39,7 +39,7 @@ public:
     }
 
 private:
-    // 递归参数为当前节点及其前驱节点
+    // 递归参数为**当前节点**及其**前驱节点**
     ListNode *recur(ListNode *cur, ListNode *pre)
     {
         if (cur == nullptr)
