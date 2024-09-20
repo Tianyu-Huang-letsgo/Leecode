@@ -25,7 +25,7 @@ private:
     DLinkedNode *tail;
     int size_;
     int capacity_;
-    unordered_map<int, DLinkedNode *> hash_; // 使用key作为哈希表键， 节点指针作为哈希表值；因为节点可能包含很多信息
+    unordered_map<int, DLinkedNode *> hash_; // 使用key作为哈希表键， 节点指针作为哈希表值；因为节点可能包含很多信息(一个结构体所有信息)
 
 public:
     LRUCache(int cap) : capacity_(cap), size_(0)

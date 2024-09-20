@@ -116,7 +116,7 @@ private:
         if (k == 1) // 递归到头了
             return std::min(nums1[start1], nums2[start2]);
 
-        int i = start1 + std::min(len1, k / 2) - 1; // 指向数组1的指针， -1是为了把自身减去，min()得到的是计数元素个数
+        int i = start1 + std::min(len1, k / 2) - 1; // 指向数组1的指针， -1是为了将自身也要算上，min()得到的是计数元素个数
         int j = start2 + std::min(len2, k / 2) - 1; // 指向数组2的指针
 
         if (nums1[i] > nums2[j])
