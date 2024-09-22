@@ -9,7 +9,6 @@ using namespace std;
 class Solution1
 {
 public:
-#include <vector>
 
     double findMedianSortedArrays1(const std::vector<int> &nums1, const std::vector<int> &nums2)
     {
