@@ -10,7 +10,7 @@ void shellInsert(vector<int> &nums, int gap)
 {
     for (int i = gap; i < nums.size(); ++i)
     {
-        int base = nums[i];
+        int base = nums[i]; // 暂存待插元素
         int j = i - gap;
         while (j >= 0 && nums[j] > base)
         {
@@ -27,7 +27,7 @@ void shellSort(vector<int> &nums)
     while (gap > 1)
     {
         gap /= 2;
-        shellInsert(nums, gap); // 最后一次插排gap = 1，会进行一次一摸一样的插入排序
+        shellInsert(nums, gap); // 最后一次插排gap = 1，会进行一次完全一样的插入排序
     }
 }
 

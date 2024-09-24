@@ -5,14 +5,15 @@
 
 using namespace std;
 
-// 快速排序-将小于基准数的元素移到其左侧，大于基准数的元素移到右侧
-
+// 快速排序（不稳定）
+// 将小于基准数的元素移到其左侧，大于基准数的元素移到右侧
+// 换完之后pivot左侧数<=nums[pivot]，右侧数>=nums[pivot]
 int partition(vector<int> &nums, int left, int right)
 {
     int i = left, j = right;
     while (i < j)
     {
-        while (i < j && nums[j] >= nums[left])
+        while (i < j && nums[j] >= nums[left]) // 核心是先要找到比基准值小的那个数
         {
             --j;
         }
@@ -48,7 +49,7 @@ void quickSort_optim(vector<int> &nums, int left, int right)
         if (pivot - left < right - pivot)
         {
             quickSort_optim(nums, left, pivot - 1);
-            left = pivot + 1;
+            left = pivot + 1; // 尾递归核心：假如排左侧，当左侧排好了就将左边界调整到右侧
         }
         else
         {

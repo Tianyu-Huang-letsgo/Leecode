@@ -4,15 +4,15 @@
 
 using namespace std;
 
-// 选择排序-每次选择《未排序区间》最小的数与《排序区间》末端进行交换
+// 选择排序-每次选择《未排序区间》最小的数与《已排序区间》后一个数进行交换
 void selectionSort(vector<int> &nums)
 {
-    int n = nums.size();
     // 未排序区间[i, n-1]
-    for (int i = 0; i < n - 1; ++i)
+    // 第一个要找的就是整个数组中最小的数作为数组头
+    for (int i = 0; i < nums.size() - 1; ++i)
     {
         int k = i;
-        for (int j = i + 1; j < n - 1; ++j)
+        for (int j = i + 1; j < nums.size(); ++j)
         {
             if (nums[j] < nums[k])
             {

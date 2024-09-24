@@ -31,7 +31,7 @@ void merge(vector<int> &nums, int left, int mid, int right)
     }
     for (int cnt = 0; cnt < tmp.size(); ++cnt)
     {
-        nums[left + k] = tmp[cnt];
+        nums[left + cnt] = tmp[cnt];
     }
 }
 

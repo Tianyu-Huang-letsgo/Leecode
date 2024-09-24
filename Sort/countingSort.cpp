@@ -6,6 +6,7 @@
 using namespace std;
 
 // 计数排序
+// 缺点：占用空间大（涵盖最小值到最大值），当nums.size() > 10*maxNum，可以使用
 void countSort(vector<int> &nums)
 {
     if (nums.empty())

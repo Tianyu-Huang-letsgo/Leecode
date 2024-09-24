@@ -22,7 +22,7 @@ void siftDown(vector<int> &nums, int i, int n)
         {
             root = r;
         }
-        if (root = i)
+        if (root = i) // i没有进行交换，退出循环
         {
             break;
         }
@@ -44,7 +44,7 @@ void heapSort(vector<int> &nums)
     for (int i = n - 1; i > 0; --i)
     {
         swap(nums[0], nums[i]); // 只用循环n-1次，因为如果只剩一个元素，交换也没有意义了
-        siftDown(nums, 0, i);
+        siftDown(nums, 0, i);   // i在这里就相当于未排序的边界了
     }
 }
 
